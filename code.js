@@ -25,6 +25,7 @@ axios.get("https://rockandice.com/").then(function(response) {
             db.Article.create(results)
                 .then(function(dbArticle) {
                     console.log(dbArticle);
+                    res.render()
                 })
                 .catch(function(err) {
                     console.log(err);

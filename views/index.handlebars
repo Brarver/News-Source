@@ -1,2 +1,50 @@
-<p>TESTING</p>
+
+
+<nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">R and I SCRAPER</a>
+            <a class="navbar-brand" href="/">HOME</a>
+            <a class="navbar-brand" href="/saved">SAVED</a>
+            {{#if main}}
+            <button class="btn btn-outline-success article-scrape" type="button">Scape Articles</button>
+            {{/if}}
+            <button class="btn btn-outline-success clear-all" type="button">Clear Articles</button>
+        </nav>
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">
+                    {{#if saved}}SAVED ARTICLES {{else}} ROCK AND ICE SCRAPER{{/if}}
+                </h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+        </div>
+
+        <div class="container-fluid no-articles">
+            {{#if articles}}
+                <ul>
+                    {{#if main}}
+                    {{#each articles}}
+                    <div class="parent">
+                    <p>{{this.title}}</p>
+                    <button class="save-article" data-id= "{{this.id}}" data-title= "{{this.title}}" data-link= "{{this.link}}" data-date="{{this.date}}">SAVE ARTICLE</button>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+                    
+                    {{#if saved}}
+                    {{#each articles}}
+                    <div class="parent">
+                    <p>{{this.title}}</p>
+                    <button class="delete-saved" data-id="{{this.id}}">DELETE FROM SAVED</button>
+                    <button class="article-notes" data-id="{{this.id}}">ARTICLE NOTES</button>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+                </ul>
+                {{else}}
+                <p>There are no articles currently scraped.</p>
+            {{/if}}
+            
+        
+        </div>
 
