@@ -68,9 +68,63 @@ $(document).ready(function () {
             console.log("article " + id + " deleted from Saved")
         })
     })
+
+    ////Article note button
+    $(document).on("click", ".article-notes", function() {
+
+        var id = $(this).attr("data-id")
+
+        $.ajax({
+            type: "GET",
+            url: "/saved/" + id
+        })
+        .then(function(data) {
+            $(".modal-title").text("Notes for Article: " + data._id)
+            $(".modal").toggle();
+            console.log(data)
+        })
+    })
+
+
+
+    ////Save note modal listener
+    $('.save-note').on('click', function() {
+
+        var note = $(".save-note").val()
+        console.log(note)
+
+        var thisId = $(this).attr("data-id");
+          
+        $.ajax({
+            method: "POST",
+            url: "/saved/" + thisId,
+            data: {
+            title: $("#titleinput").val(),
+            body: $("#bodyinput").val()
+            }
+        })
+            .then(function(data) {
+            console.log(data);
+            });
+          
+
+
+    })
+
+
+    ///Close Modal
+    $(document).on("click", ".close", function() {
+        $(".modal-title").empty()
+        $(".modal").toggle();
+    })
     
 //////End
 });
+
+
+
+
+/////Working on save note modal listener
 
 
 

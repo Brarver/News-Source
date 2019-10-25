@@ -171,14 +171,15 @@ app.get("/articles", function(req, res) {
     });
 });
 
-//////////////////// Route for grabbing a specific Article by id, populate it with it's note///////////////////////////
+//////////////////// Route for grabbing a specific saved Article by id, populate it with it's note///////////////////////////
 
-app.get("/articles/:id", function(req, res) {
+app.get("/saved/:id", function(req, res) {
 
-  db.Article.findOne({ _id: req.params.id })
+  db.Saved.findOne({ _id: req.params.id })
     .populate("note")
     .then(function(dbArticle) {
       res.json(dbArticle);
+      res.send(dbArticle);
     })
     .catch(function(err) {
       res.json(err);
@@ -195,6 +196,7 @@ app.post("/articles/:id", function(req, res) {
     })
     .then(function(dbArticle) {
       res.json(dbArticle);
+      res.send(dbArticle)
     })
     .catch(function(err) {
       res.json(err);
