@@ -14,10 +14,12 @@ var SavedSchema = new Schema({
   date: {
     type: String,
   },
-  note: {
+  note: [
+     {
     type: Schema.Types.ObjectId,
     ref: "Note"
   }
+  ]
 });
 
 var Saved = mongoose.model("Saved", SavedSchema);

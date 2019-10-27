@@ -116,6 +116,25 @@ app.delete("/saved/:id", function(req, res) {
   res.send("worked")
 });
 
+/////////////////////////////DELETE NOTE////////////////////////////////////////////
+
+app.delete("/note/:id", function(req, res) {
+
+  db.Note.deleteOne(
+    {
+      _id: req.params.id
+    },
+    function(err, suc) {
+      if (err) {
+        console.log(error)
+      } else {
+        console.log('success')
+      }
+    }
+  )
+  res.send("worked")
+});
+
 ///////////////////SCRAPE ROUTE///////////////////////////////
 
 app.get("/scrape", function(req, res) {
@@ -145,13 +164,16 @@ app.get("/scrape", function(req, res) {
                         
                 console.log(results);
     
-            db.Article.create(results)
+            if (results.date) {
+              
+              db.Article.create(results)
                 .then(function(dbArticle) {
                     res.render()
                 })
                 .catch(function(err) {
                     console.log(err);
                 });
+            }
 
             });
             
@@ -159,7 +181,7 @@ app.get("/scrape", function(req, res) {
             });
 });
 
-/////////////////////// Route for getting all Articles from the db///////////////////////////
+///////////////////////GET ALL ARTICLES///////////////////////////
 
 app.get("/articles", function(req, res) {
   db.Article.find({})
@@ -171,14 +193,13 @@ app.get("/articles", function(req, res) {
     });
 });
 
-//////////////////// Route for grabbing a specific saved Article by id, populate it with it's note///////////////////////////
+//////////////////// GET A SAVED ARTICLE, POPULATE IT WITH NOTE///////////////////////////
 
 app.get("/saved/:id", function(req, res) {
 
   db.Saved.findOne({ _id: req.params.id })
     .populate("note")
     .then(function(dbArticle) {
-      res.json(dbArticle);
       res.send(dbArticle);
     })
     .catch(function(err) {
@@ -186,16 +207,16 @@ app.get("/saved/:id", function(req, res) {
     });
 });
 
-/////////////////////////////Route for saving/updating an Article's associated Note///////////////////////////////
+/////////////////////////////SAVE NOTE///////////////////////////////
 
-app.post("/articles/:id", function(req, res) {
+app.post("/saved/:id", function(req, res) {
 
+  console.log(req.body)
   db.Note.create(req.body)
     .then(function(dbNote) {
-      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+      return db.Saved.findOneAndUpdate({ _id: req.params.id }, { $push: { note: dbNote._id } }, { new: true });
     })
     .then(function(dbArticle) {
-      res.json(dbArticle);
       res.send(dbArticle)
     })
     .catch(function(err) {

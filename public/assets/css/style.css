@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+       
+html {
+    background-color: grey;
+    width: 100%;
+}
+
+body {
+    position: absolute;
+    font-family: 'Montserrat', sans-serif; 
+    background-color: grey;
+    width: 100%;
+}
+
+p {
+    color: rgba(33, 8, 177, 0.776);
+}
+
+.container-fluid {
+    width: 100%;
+}
+
+.navbar {
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    color: rgba(33, 8, 177, 0.776); 
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.links,
+.ri {
+    margin-top: 10px;
+}
+
+.l {
+    margin-right: 25px;
+}
+
+.r {
+    margin-left: 30px;
+}
+
+.head {
+    background-image: url('../images/flatirons.jpg');
+    background-size: 100%;
+    background-position: 0px -30px;
+    position: relative;
+    z-index: 1;
+    margin: 20px 20px 0px 20px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.background-color {
+    background-color: rgba(33, 8, 177, 0.776);
+    height: 300px;
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    bottom: 64px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.title {
+    color: white;
+    padding-top: 70px;
+}
+
+.buttons {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    position: absolute;
+    left: 35%;
+    bottom: 0;
+    padding-bottom: 20px;
+}
+
+.but {
+    background-color: grey;
+    color: rgb(235, 235, 235);
+    font-weight: bold;
+}
+
+.clear-all2 {
+    position: relative;
+    left: 35%;
+}
+
+.parent {
+    background-color: rgb(228, 219, 219);
+    margin: auto;
+    margin-top: 20px;
+    width: 98%;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+.art-head { 
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.none {
+    margin-top: 100px;
+    font-size: 30px;
+}
+
+.n {
+    color: rgb(228, 219, 219);
+}
+
+.no-articles {
+    text-align: center;
+}
+
+.note {
+    height: 40px;
+    margin: 10px;
+}
+
+.try {
+    /* border: 1px solid black; */
+    height: 40px;
+}
+
+.remove-note {
+    float: right;
+}
