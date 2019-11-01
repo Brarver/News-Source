@@ -8,7 +8,7 @@ var cheerio = require("cheerio");
 
 var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
@@ -37,7 +37,7 @@ app.engine(
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsSource";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 
